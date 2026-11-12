@@ -1,0 +1,59 @@
+digraph SpeedrunHub {
+  graph [rankdir=LR, bgcolor="#101413", pad="0.35", nodesep="0.65", ranksep="1.0", label="SPEEDRUN HUB — MODELO RELACIONAL", labelloc=t, fontsize=22, fontname="Arial", fontcolor="#42e695"];
+  node [shape=plain, fontname="Arial"];
+  edge [color="#42e695", fontcolor="#dce8e1", fontsize=11, fontname="Arial", penwidth=1.6, arrowsize=0.8];
+
+  usuarios [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#42e695" BGCOLOR="#1a2220">
+      <TR><TD BGCOLOR="#244c3c"><FONT COLOR="#ffffff"><B>USUARIOS / RUNNERS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#42e695">PK</FONT><FONT COLOR="#edf5f0"> id_runner</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">nickname (UNIQUE)</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">email (UNIQUE)</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">senha (hash)</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">data_cadastro</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  runs [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#42e695" BGCOLOR="#1a2220">
+      <TR><TD BGCOLOR="#244c3c"><FONT COLOR="#ffffff"><B>RUNS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#42e695">PK</FONT><FONT COLOR="#edf5f0"> id_run</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#f4d35e">FK</FONT><FONT COLOR="#edf5f0"> id_runner</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#f4d35e">FK</FONT><FONT COLOR="#edf5f0"> id_jogo</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#f4d35e">FK</FONT><FONT COLOR="#edf5f0"> id_categoria</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">tempo_segundos</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">versao, link, data_registro</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  jogos [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#42e695" BGCOLOR="#1a2220">
+      <TR><TD BGCOLOR="#244c3c"><FONT COLOR="#ffffff"><B>JOGOS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#42e695">PK</FONT><FONT COLOR="#edf5f0"> id_jogo</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">nome</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#f4d35e">FK</FONT><FONT COLOR="#edf5f0"> id_plataforma</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  categorias [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#42e695" BGCOLOR="#1a2220">
+      <TR><TD BGCOLOR="#244c3c"><FONT COLOR="#ffffff"><B>CATEGORIAS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#42e695">PK</FONT><FONT COLOR="#edf5f0"> id_categoria</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">nome</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">descricao</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  plataformas [label=<
+    <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="7" COLOR="#42e695" BGCOLOR="#1a2220">
+      <TR><TD BGCOLOR="#244c3c"><FONT COLOR="#ffffff"><B>PLATAFORMAS</B></FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#42e695">PK</FONT><FONT COLOR="#edf5f0"> id_plataforma</FONT></TD></TR>
+      <TR><TD ALIGN="LEFT"><FONT COLOR="#edf5f0">nome</FONT></TD></TR>
+    </TABLE>
+  >];
+
+  usuarios -> runs [label="1 : N", taillabel="1", headlabel="N", labeldistance=1.7];
+  jogos -> runs [label="1 : N", taillabel="1", headlabel="N", labeldistance=1.7];
+  categorias -> runs [label="1 : N", taillabel="1", headlabel="N", labeldistance=1.7];
+  plataformas -> jogos [label="1 : N", taillabel="1", headlabel="N", labeldistance=1.7];
+}
